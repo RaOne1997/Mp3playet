@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.abhijeet.mp3player"
+    android:versionCode="110001"
+    android:versionName="1.0">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/random"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/random"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.abhijeet.mp3player.MainActivity"
+            android:launchMode="singleInstance"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.abhijeet.mp3player.SongService"/>
+        <receiver
+            android:label="@string/app_name"
+            android:icon="@drawable/random"
+            android:name="com.abhijeet.mp3player.helpers.UpdateReceiver" >
+            <intent-filter>
+                <action android:name="com.abhijeet.mp3player.ACTION_PLAY" />
+                <action android:name="com.abhijeet.mp3player.ACTION_NEXT" />
+                <action android:name="com.abhijeet.mp3player.ACTION_PREV" />
+                <action android:name="com.abhijeet.mp3player.ACTION_CLOSE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.HEADSET_PLUG" />
+
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/widget_config" />
+
+    </application>
+
+</manifest>
